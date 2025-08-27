@@ -25,6 +25,7 @@ public readonly record struct Result<T>
 {
     public object? Value { get; }
     public bool IsSuccess => Value is Success<T?>;
+    public bool HasValue => IsSuccess && ((Success<T?>)Value!).Value is not null;
     public bool IsFailure => Value is Failure;
 
     private Result(Success<T?> success) => Value = success;
