@@ -1,0 +1,25 @@
+@using Helper.Razor.Components.Common
+@using Helper.Razor.Components.Common.Models
+@using Helper.Razor.Components.Common.Services
+@inherits DefaultComponentBase
+
+<button id="@ComponentId" @attributes="AdditionalAttributes" @onclick="OnClickHandler">
+
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+
+</button>
+
+@code {
+
+    [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; } = default!;
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; } = default!;
+
+    private async Task OnClickHandler(MouseEventArgs args)
+    {
+        if (OnClick.HasDelegate)
+            await OnClick.InvokeAsync(args);
+    }
+
+}

@@ -16,6 +16,7 @@ public class JsonDatabaseSortOptions : DatabaseSortOptions
         WriteIndented = false,
         DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
     };
+
     public bool LogJsonComparisons { get; set; } = false;
 }
 

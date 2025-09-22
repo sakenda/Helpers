@@ -1,0 +1,14 @@
+@using Helper.Razor.Components.Common
+@using Helper.Razor.Components.Common.Services
+@inherits DefaultComponentBase
+
+<label id="@ComponentId" @attributes="AdditionalAttributes" wrapText="@AllowWrapingText.ToString().ToLower()">@ChildContent</label>
+
+@code {
+    public override string ComponentId => Parent.ComponentId + "_text";
+
+    [CascadingParameter] public DefaultComponentBase Parent { get; set; } = default!;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool AllowWrapingText { get; set; } = false;
+
+}

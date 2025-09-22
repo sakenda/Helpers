@@ -1,0 +1,72 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+@using Helper.Razor.Components.Components.Buttons
+@using Helper.Razor.Components.Components.Common
+@using Helper.Razor.Components.Common.Models
+
+<h2>Default Buttons</h2>
+
+<div style="display: flex; gap: 16px;">
+    <DefaultButton OnClick="@(() => AddInput("Button 1 clicked"))" title="Beispiel hovertext">
+        <DefaultText>Button 1</DefaultText>
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Button submit clicked"))" type="submit">
+        <DefaultText>Buttontype submit</DefaultText>
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Button reset clicked"))" type="reset">
+        <DefaultText>Buttontype reset</DefaultText>
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Disabled Button clicked"))" disabled=true>
+        <DefaultText>Disabled Button</DefaultText>
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Button 2 clicked"))">
+        <DefaultIcon Icon="@(Icon.FromCssClass("fa-fw fa-solid fa-house"))" />
+        <DefaultText>Button 2</DefaultText>
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Button 3 clicked"))">
+        <DefaultText>Button 3</DefaultText>
+        <DefaultIcon Icon="@(Icon.FromCssClass("fa-fw fa-solid fa-house"))" />
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Button with only house clicked"))">
+        <DefaultIcon Icon="@(Icon.FromCssClass("fa-fw fa-solid fa-house"))" />
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Button 4 clicked"))" style="background-color: red;">
+        <DefaultText>Button 4</DefaultText>
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Button 5 clicked"))" style="background-color: light-gray; color: green;">
+        <DefaultIcon Icon="@(Icon.FromCssClass("fa-fw fa-solid fa-house"))" />
+        <DefaultText>Button 5</DefaultText>
+    </DefaultButton>
+
+    <DefaultButton OnClick="@(() => AddInput("Button 6 clicked"))" style="background-color: light-gray; color: green;">
+        <DefaultIcon Icon="@(Icon.FromCssClass("fa-fw fa-solid fa-house", "red", "2em"))" />
+        <DefaultText>Button 6</DefaultText>
+    </DefaultButton>
+</div>
+
+@foreach (var input in _inputs)
+{
+    <div>@input</div>
+}
+
+@code {
+    private List<string> _inputs = [];
+
+    private void AddInput(string input)
+    {
+        _inputs.Add(input);
+
+        if (_inputs.Count > 5)
+            _inputs.RemoveAt(0);
+    }
+
+}

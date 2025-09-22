@@ -1,0 +1,27 @@
+@using Helper.Razor.Components.Common
+@using Helper.Razor.Components.Common.Models
+@using Helper.Razor.Components.Common.Services
+@inherits DefaultComponentBase
+
+@if (Icon.IsCharIcon)
+{
+    <span id="@ComponentId" @attributes="AdditionalAttributes" style="font-size: @Icon.Size; color: @Icon.Color;">
+        @Icon.IconChar
+    </span>
+}
+else if (Icon.IsImageIcon)
+{
+    <img id="@ComponentId" src="@Icon.ImageUrl" alt="Icon" @attributes="AdditionalAttributes" style="width: @Icon.Size; height: @Icon.Size;" />
+}
+else if (Icon.IsCssIcon)
+{
+    <span id="@ComponentId" @attributes="AdditionalAttributes" class="@Icon.CssClass" style="font-size: @Icon.Size; color: @Icon.Color;"></span>
+}
+
+@code {
+    public override string ComponentId => Parent.ComponentId + "_icon";
+
+    [CascadingParameter] public DefaultComponentBase Parent { get; set; } = default!;
+    [Parameter, EditorRequired] public Icon Icon { get; set; }
+
+}

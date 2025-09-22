@@ -2,8 +2,6 @@
 using Helpers.Sorting.Common;
 using Helpers.Sorting.Models;
 using Helpers.Sorting.Services;
-using System.Drawing;
-using System.Globalization;
 
 namespace Demo.Sorting.Examples;
 
@@ -26,76 +24,68 @@ public static class CustomComparerExample
                 DeleteCount = toDelete
             });
 
-        Console.WriteLine($"Created base products: {baseProducts.Count}");
-        Console.WriteLine($"Created modified products: {modifiedProducts.Count}");
-
-        SortWithSettings(baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
+        LogHelper.WriteLog("Base Products", () =>
         {
-            LogJsonComparisons = true,
+            Console.WriteLine($"\tCreated base products: {baseProducts.Count}");
+            Console.WriteLine($"\tCreated modified products: {modifiedProducts.Count}");
+        });
+
+
+        SortWithSettings("#1 UpdateStrategy - AlwaysUpdate", baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
+        {
             UpdateStrategy = UpdateStrategy.AlwaysUpdate,
             UpdateDetectionStrategy = UpdateDetectionStrategy.JsonContentOnly,
         });
 
-        SortWithSettings(baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
+        SortWithSettings("#2 UpdateStrategy - NeverUpdate", baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
         {
-            LogJsonComparisons = true,
             UpdateStrategy = UpdateStrategy.NeverUpdate,
             UpdateDetectionStrategy = UpdateDetectionStrategy.JsonContentOnly,
         });
 
-        SortWithSettings(baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
+        SortWithSettings("#3 UpdateStrategy - LastModifiedWins", baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
         {
-            LogJsonComparisons = true,
             UpdateStrategy = UpdateStrategy.LastModifiedWins,
             UpdateDetectionStrategy = UpdateDetectionStrategy.JsonContentOnly,
         });
 
-        SortWithSettings(baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
+        SortWithSettings("#4 UpdateStrategy - CustomComparison", baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
         {
-            LogJsonComparisons = true,
             UpdateStrategy = UpdateStrategy.CustomComparison,
             UpdateDetectionStrategy = UpdateDetectionStrategy.JsonContentOnly,
         });
 
-        SortWithSettings(baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
+        SortWithSettings("#5 UpdateDetectionStrategy - JsonContentAndLastModified", baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
         {
-            LogJsonComparisons = true,
             UpdateStrategy = UpdateStrategy.AlwaysUpdate,
             UpdateDetectionStrategy = UpdateDetectionStrategy.JsonContentAndLastModified,
         });
 
-        SortWithSettings(baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
+        SortWithSettings("#6 UpdateDetectionStrategy - LastModifiedOnly", baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
         {
-            LogJsonComparisons = true,
             UpdateStrategy = UpdateStrategy.NeverUpdate,
             UpdateDetectionStrategy = UpdateDetectionStrategy.LastModifiedOnly,
         });
 
-        SortWithSettings(baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
+        SortWithSettings("#7 UpdateDetectionStrategy - JsonContentOrLastModified", baseProducts, modifiedProducts, new JsonDatabaseSortOptions()
         {
-            LogJsonComparisons = true,
             UpdateStrategy = UpdateStrategy.NeverUpdate,
             UpdateDetectionStrategy = UpdateDetectionStrategy.JsonContentOrLastModified,
         });
 
     }
 
-    private static void SortWithSettings(List<Product> baseProducts, List<Product> modifiedProducts, JsonDatabaseSortOptions options)
+    private static void SortWithSettings(string testName, List<Product> baseProducts, List<Product> modifiedProducts, JsonDatabaseSortOptions options)
     {
-        // ┌┐─└┘│
         var sorter = SorterServiceFactory.CreateJsonComparableDatabaseSorter<Product, int>(options);
         var sortResult = sorter.SortForDatabase(baseProducts, modifiedProducts);
 
-        Console.WriteLine($"""
-            ┌──────────────────────┘
-            └┐
-             │  Sort settings:
-             │      {options.UpdateStrategy}, {options.UpdateDetectionStrategy}
-             │  Sort result:
-             │      Insert/Update/Delete: {sortResult.InsertCount}/{sortResult.UpdateCount}/{sortResult.DeleteCount}
-            ┌┘
-            └──────────────────────┐
-            """);
+        LogHelper.WriteLog(testName, () =>
+        {
+            Console.WriteLine($"\tSort settings: {options.UpdateStrategy}, {options.UpdateDetectionStrategy}");
+            Console.WriteLine($"\tSort result: Insert/Update/Delete: {sortResult.InsertCount}/{sortResult.UpdateCount}/{sortResult.DeleteCount}");
+        });
     }
+
 
 }
