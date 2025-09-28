@@ -1,0 +1,9 @@
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: hsl(var(--c-neutral-hsl), var(--shade-900));
+        --background-shade: hsl(var(--c-neutral-hsl), var(--shade-800));
+        --foreground: hsl(var(--c-neutral-hsl), var(--shade-050));
+        --border-color: hsl(var(--c-neutral-hsl), var(--shade-700));
+    }
+}

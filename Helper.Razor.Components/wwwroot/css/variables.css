@@ -1,0 +1,65 @@
+
+:root {
+    --d-bright: white;
+    --d-dark: black;
+    --d-lum-background-color: 96%;
+    --d-lum-color: 34%;
+    --d-background-color: hsl(0, 0%, var(--d-lum-background-color));
+    --d-color: hsl(215, 14%, var(--d-lum-color));
+    --d-border-radius-sm: 4px;
+    --d-border-radius-md: 6px;
+    --d-border-radius-lg: 8px;
+    --d-border-radius-xl: 16px;
+    --d-spacing-sm: 0.25rem;
+    --d-spacing-md: 0.5rem;
+    --d-spacing-lg: 1rem;
+    --d-spacing-xl: 2rem;
+    --d-box-shadow-sm: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    /* === HUE AND SATURATION DEFINITIONS === */
+    /* Farben (HSL-Modell) */
+    --h-primary: 235;
+    --s-primary: 38%;
+    --h-secondary: 66;
+    --s-secondary: 68%;
+    --h-success: 147;
+    --s-success: 80%;
+    --h-warning: 50;
+    --s-warning: 80%;
+    --h-danger: 343;
+    --s-danger: 80%;
+    --h-neutral: 0;
+    --s-neutral: 0%;
+    /* Lightness Steps */
+    --shade-050: 95%;
+    --shade-100: 90%;
+    --shade-150: 85%;
+    --shade-200: 80%;
+    --shade-250: 75%;
+    --shade-300: 70%;
+    --shade-350: 65%;
+    --shade-400: 60%;
+    --shade-450: 55%;
+    --shade-500: 50%;
+    --shade-550: 45%;
+    --shade-600: 40%;
+    --shade-650: 35%;
+    --shade-700: 30%;
+    --shade-750: 25%;
+    --shade-800: 20%;
+    --shade-850: 15%;
+    --shade-900: 10%;
+    --shade-950: 05%;
+    /* HSL Shortcuts */
+    --c-primary-hsl: var(--h-primary), var(--s-primary);
+    --c-secondary-hsl: var(--h-secondary), var(--s-secondary);
+    --c-success-hsl: var(--h-success), var(--s-success);
+    --c-warning-hsl: var(--h-warning), var(--s-warning);
+    --c-danger-hsl: var(--h-danger), var(--s-danger);
+    --c-neutral-hsl: var(--h-neutral), var(--s-neutral);
+    /* Light Mode Defaults */
+    --background: hsl(var(--c-neutral-hsl), var(--shade-050));
+    --background-shade: hsl(var(--c-neutral-hsl), var(--shade-100));
+    --foreground: hsl(var(--c-neutral-hsl), var(--shade-900));
+    --foreground-shade: hsl(var(--c-neutral-hsl), var(--shade-600));
+    --border-color: hsl(var(--c-neutral-hsl), var(--shade-300));
+}

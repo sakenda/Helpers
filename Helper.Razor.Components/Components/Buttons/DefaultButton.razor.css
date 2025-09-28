@@ -1,68 +1,55 @@
-/*button {
-    font-size: 17px;
-    padding: 0.5em 2em;
+
+.button-container {
+
+}
+
+button {
+    padding: 0.5rem 1rem;
     border: transparent;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    background: dodgerblue;
-    color: white;
+    box-shadow: var(--d-box-shadow-sm);
     border-radius: 4px;
-    display: flex;
-    gap: 0.5rem;
     align-items: center;
+    color: var(--d-color);
+    background-color: var(--d-background-color);
+    cursor: pointer;
 }
 
     button:hover:not(:disabled) {
-        background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+        background-color: hsl(0, 0%, calc(var(--d-lum-background-color) - 3%));
     }
 
     button[type="submit"] {
-        background-color: hsl(137, 61%, 37%) !important;
+        color: var(--d-background-color);
+        background-color: hsl(137, 61%, 37%);
     }
 
         button[type="submit"]:hover:not(:disabled) {
-            background-color: hsl(137, 61%, 27%) !important;
+            background-color: hsl(137, 61%, 27%);
         }
 
     button[type="reset"] {
-        background-color: hsl(0, 100%, 50%) !important;
+        color: var(--d-background-color);
+        background-color: hsl(0, 100%, 50%);
     }
 
         button[type="reset"]:hover:not(:disabled) {
-            background-color: hsl(0, 100%, 40%) !important;
+            background-color: hsl(0, 100%, 40%);
         }
 
     button:active:not(:disabled) {
-        transform: translate(0em, 0.2em);
+        transform: translate(0em, 0.15em);
     }
 
     button:disabled {
-        background-color: #94a3b8;
+        background-color: hsl(0, 0%, calc(var(--d-lum-background-color) - 20%));
         cursor: not-allowed;
         opacity: 0.7;
         box-shadow: none;
+        color: var(--d-background-color);
     }
-*/
 
-button {
+.button-content {
+    pointer-events: none;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 15px;
-    gap: 15px;
-    background-color: #181717;
-    outline: 3px #181717 solid;
-    outline-offset: -3px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: 400ms;
-        color: white;
-        font-weight: 700;
-        font-size: 1em;
+    gap: 0.5rem;
 }
-
-    button:hover {
-        background-color: transparent;
-        color: #181717;
-    }

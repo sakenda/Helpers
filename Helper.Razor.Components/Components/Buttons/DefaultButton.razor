@@ -1,20 +1,26 @@
 @using Helper.Razor.Components.Common
+@using Helper.Razor.Components.Common.DefaultBases
 @using Helper.Razor.Components.Common.Models
 @using Helper.Razor.Components.Common.Services
 @inherits DefaultComponentBase
 
-<button id="@ComponentId" @attributes="AdditionalAttributes" @onclick="OnClickHandler">
+<div class="button-container" title="@Tooltip">
+    <button id="@ComponentId" @attributes="AdditionalAttributes" @onclick="OnClickHandler">
 
-    <CascadingValue Value="this">
-        @ChildContent
-    </CascadingValue>
+        <div class="button-content">
+            <CascadingValue Value="this">
+                @ChildContent
+            </CascadingValue>
+        </div>
 
-</button>
+    </button>
+</div>
 
 @code {
 
     [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; } = default!;
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; } = default!;
+    [Parameter] public override string Tooltip { get; set; } = default!;
 
     private async Task OnClickHandler(MouseEventArgs args)
     {

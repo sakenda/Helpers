@@ -18,3 +18,19 @@
         right: 0.75rem;
         top: 0.5rem;
     }
+
+page {
+}
+
+menu {
+    display: flex;
+    gap: var(--d-spacing-md);
+    padding: var(--d-spacing-md);
+    background-color: var(--d-background-color);
+}
+
+content {
+    display: block;
+    padding: 0.5rem;
+    overflow: auto;
+}

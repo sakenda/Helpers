@@ -1,4 +1,5 @@
 @using Helper.Razor.Components.Common
+@using Helper.Razor.Components.Common.DefaultBases
 @using Helper.Razor.Components.Common.Models
 @using Helper.Razor.Components.Common.Services
 @inherits DefaultComponentBase
@@ -21,7 +22,7 @@ else if (Icon.IsCssIcon)
 @code {
     public override string ComponentId => Parent.ComponentId + "_icon";
 
-    [CascadingParameter] public DefaultComponentBase Parent { get; set; } = default!;
+    [CascadingParameter] public IDefaultBase Parent { get; set; } = default!;
     [Parameter, EditorRequired] public Icon Icon { get; set; }
 
 }

@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/defaultbutton"
 @rendermode InteractiveServer
 
 @using Helper.Razor.Components.Components.Buttons
@@ -7,7 +7,7 @@
 
 <h2>Default Buttons</h2>
 
-<div style="display: flex; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
     <DefaultButton OnClick="@(() => AddInput("Button 1 clicked"))" title="Beispiel hovertext">
         <DefaultText>Button 1</DefaultText>
     </DefaultButton>

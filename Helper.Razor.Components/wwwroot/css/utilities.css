@@ -1,0 +1,15 @@
+
+/* Farben */
+.text-primary { color: hsl(var(--c-primary-hsl), var(--shade-500)); }
+.text-secondary { color: hsl(var(--c-secondary-hsl), var(--shade-500)); }
+.text-success { color: hsl(var(--c-success-hsl), var(--shade-500)); }
+.text-warning { color: hsl(var(--c-warning-hsl), var(--shade-500)); }
+.text-danger { color: hsl(var(--c-danger-hsl), var(--shade-500)); }
+
+.bg-primary { background-color: hsl(var(--c-primary-hsl), var(--shade-500)); }
+.bg-secondary { background-color: hsl(var(--c-secondary-hsl), var(--shade-500)); }
+.bg-success { background-color: hsl(var(--c-success-hsl), var(--shade-500)); }
+.bg-warning { background-color: hsl(var(--c-warning-hsl), var(--shade-500)); }
+.bg-danger { background-color: hsl(var(--c-danger-hsl), var(--shade-500)); }
+.bg-neutral { background-color: hsl(var(--c-neutral-hsl), var(--shade-200)); }
+

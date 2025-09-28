@@ -1,0 +1,90 @@
+﻿@page "/defaultinput"
+@rendermode InteractiveServer
+
+@using Helper.Razor.Components.Common.DefaultBases
+@using Helper.Razor.Components.Common.Models
+@using Helper.Razor.Components.Components.Buttons
+@using Helper.Razor.Components.Components.Common
+@using Helper.Razor.Components.Components.Inputs
+@using System.ComponentModel.DataAnnotations
+
+<h3>DefaultInput</h3>
+
+<EditForm Model="@_person">
+    <DataAnnotationsValidator />
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-inline: 2rem; margin-top: 2rem;">
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+            <div>
+                <DefaultInput Label="Name" @bind-Value="_person.Name" style="width: 100%;" Placeholder="John">
+                    <IconContent>
+                        <DefaultIcon Icon="@(Icon.FromCssClass("fa-solid fa-user"))" />
+                    </IconContent>
+                </DefaultInput>
+            </div>
+            <div>
+                <DefaultInput Label="Lastname" @bind-Value="_person.Lastname"
+                    Placeholder="Doe" />
+            </div>
+            <div>
+                <DefaultInput Label="E-Mail" @bind-Value="_person.Email"
+                    Placeholder="example" Suffix="@("@comnpany.com")" disabled="true" />
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 0.33fr; gap: 0.5rem;">
+            <div>
+                <DefaultInput Label="Position-Path" @bind-Value="@_person.Position"
+                              Prefix="/company/wf/" Placeholder="eg. it/software-eng" Tooltip="This is a Infotext to explain this Property" />
+            </div>
+            <div>
+                <DefaultInput Label="Salary" @bind-Value="@_person.Salary" Suffix="€" />
+            </div>
+        </div>
+
+        <div>
+            <DefaultInput Label="Website" @bind-Value="_person.Website" Placeholder="www.site.com" Prefix="https://">
+                <IconContent>
+                    <DefaultIcon Icon="@(Icon.FromCssClass("fa-solid fa-globe", "hsl(216, 85%, 57%)"))" />
+                </IconContent>
+            </DefaultInput>
+        </div>
+
+        <DefaultValidationSummary />
+
+        <DefaultButton type="submit">Submit</DefaultButton>
+
+    </div>
+</EditForm>
+
+@code {
+
+    class Person
+    {
+        [Required(ErrorMessage = "Name is required")]
+        public string Name { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Lastname is required")]
+        public string Lastname { get; set; } = string.Empty;
+
+        [Range(0, double.MaxValue, ErrorMessage = "Salary must be a positive number")]
+        public decimal Salary { get; set; } = 0;
+
+        [Required(ErrorMessage = "Position is required")]
+        public Positions Position { get; set; } = Positions.None;
+
+        public string Email { get; set; } = string.Empty;
+        public string Website { get; set; } = string.Empty;
+    }
+
+    enum Positions
+    {
+        None,
+        IT,
+        HR,
+        Finance
+    }
+
+    private Person _person = new();
+}

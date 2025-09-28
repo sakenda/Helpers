@@ -1,0 +1,81 @@
+
+.input-container {
+    position: relative;
+    background-color: var(--background);
+    box-shadow: var(--d-box-shadow-sm);
+    border-radius: var(--d-border-radius-sm);
+    border: 1px solid var(--border-color);
+    background-color: var(--background-shade);
+}
+
+.input-box {
+    border-radius: 0 0 var(--d-border-radius-sm) var(--d-border-radius-sm);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+}
+
+.icon-content {
+    height: stretch;
+    padding: var(--d-spacing-md);
+    display: flex;
+    align-items: center;
+    color: var(--foreground-shade);
+    background-color: var(--background);
+    border-radius: 0 0 0 var(--d-border-radius-sm);
+}
+
+input {
+    border: 0;
+    width: stretch;
+    border-radius: var(--d-border-radius-sm);
+    padding: var(--d-spacing-sm) var(--d-spacing-md);
+    background-color: var(--background);
+}
+
+    input:disabled {
+        background-color: var(--background-shade);
+    }
+
+    input:focus,
+    input:focus-visible,
+    input:focus-within {
+        border: 0;
+    }
+
+    input::placeholder {
+        color: var(--foreground-shade);
+        font-weight: 700;
+    }
+
+::deep .prefix-content,
+::deep .suffix-content {
+    padding-inline: var(--d-spacing-md);
+    font-family: 'Cascadia Mono';
+    font-weight: 700;
+    align-content: center;
+    height: stretch;
+    background-color: var(--background-shade);
+    color: var(--foreground-shade);
+}
+
+.input-box ::deep .prefix-content {
+    border-right: 1px solid var(--border-color);
+}
+
+.input-box:has(.icon-content) ::deep .prefix-content {
+    border-left: 1px solid var(--border-color);
+}
+
+::deep .suffix-content {
+    border-radius: 0 0 var(--d-border-radius-sm) 0;
+    border-left: 1px solid var(--border-color);
+}
+
+::deep .input-label {
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding-inline: var(--d-spacing-md);
+    color: var(--foreground-shade);
+}

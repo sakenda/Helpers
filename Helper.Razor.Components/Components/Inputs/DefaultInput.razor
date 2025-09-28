@@ -1,0 +1,46 @@
+@using Helper.Razor.Components.Common
+@using Helper.Razor.Components.Common.DefaultBases
+@using Helper.Razor.Components.Components.Common
+@inherits DefaultInputBase<TValue>
+@typeparam TValue
+
+<div class="input-container" title="@Tooltip">
+    <CascadingValue Value="this">
+        <DefaultText AllowWrapingText="false" class="input-label" for="@ComponentId">
+            @Label
+        </DefaultText>
+
+        <div class="input-box">
+            @if (IconContent is not null)
+            {
+                <div class="icon-content">
+                    @IconContent
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Prefix))
+            {
+                <DefaultText for="@ComponentId" class="prefix-content">@Prefix</DefaultText>
+            }
+
+            <input id="@ComponentId" @attributes="AdditionalAttributes" @bind-value="CurrentValue" placeholder="@Placeholder" />
+
+            @if (!string.IsNullOrWhiteSpace(Suffix))
+            {
+                <DefaultText for="@ComponentId" class="suffix-content">@Suffix</DefaultText>
+            }
+
+        </div>
+    </CascadingValue>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired] public string Label { get; set; } = default!;
+    [Parameter] public string Placeholder { get; set; } = default!;
+    [Parameter] public RenderFragment IconContent { get; set; } = default!;
+    [Parameter] public string Prefix { get; set; } = default!;
+    [Parameter] public string Suffix { get; set; } = default!;
+    [Parameter] public override string Tooltip { get; set; } = default!;
+
+}

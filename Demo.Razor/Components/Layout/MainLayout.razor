@@ -1,6 +1,29 @@
-﻿@inherits LayoutComponentBase
+﻿@using Helper.Razor.Components.Common.Models
+@using Helper.Razor.Components.Components.Buttons
+@using Helper.Razor.Components.Components.Common
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
-@Body
+<page>
+    <menu>
+        <DefaultButton OnClick="@(() => NavigationManager.NavigateTo("/"))">
+            <DefaultIcon Icon="@(Icon.FromCssClass("fa-solid fa-home"))" />
+            <DefaultText>Home</DefaultText>
+        </DefaultButton>
+        <DefaultButton OnClick="@(() => NavigationManager.NavigateTo("/defaultbutton"))">
+            <DefaultIcon Icon="@(Icon.FromCssClass("fa-solid fa-tablet-button"))" />
+            <DefaultText>DefaultButton</DefaultText>
+        </DefaultButton>
+        <DefaultButton OnClick="@(() => NavigationManager.NavigateTo("/defaultinput"))">
+            <DefaultIcon Icon="@(Icon.FromCssClass("fa-solid fa-i-cursor"))" />
+            <DefaultText>DefaultInput</DefaultText>
+        </DefaultButton>
+    </menu>
+    <content>
+        @Body
+    </content>
+</page>
+
 
 <div id="blazor-error-ui" data-nosnippet>
     An unhandled error has occurred.
